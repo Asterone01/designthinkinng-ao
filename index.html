@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DT & Innovation — Repositorio Estratégico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Barlow+Semi+Condensed:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Barlow+Semi+Condensed:wght@400;600&display=swap"/></noscript>
+<style>
+:root{--canvas:#131313;--surface:#1e1e1e;--slate:#2d2d2d;--border-dim:rgba(255,255,255,0.1);--border-mid:rgba(255,255,255,0.2);--mint:#3cffd0;--uv:#5200ff;--uv-dim:rgba(82,0,255,0.9);--link-hover:#3860be;--text:#ffffff;--text-muted:#949494;--text-off:#e9e9e9;--text-inv:#131313;--yellow:#ffe347;--pink:#ff47a0;--orange:#ff6b20;--purple-rule:#3d00bf;--display:'Barlow Condensed',-apple-system-condensed,'Arial Narrow',Impact,sans-serif;--body:'Barlow',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--mono:'Barlow Semi Condensed',-apple-system,BlinkMacSystemFont,'Helvetica Neue',monospace;--r:40px;--r-card:20px;--r-feat:24px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--canvas);color:var(--text);min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+
+nav{position:sticky;top:0;z-index:200;background:rgba(19,19,19,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-dim)}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;height:52px;padding:0 clamp(1rem,3vw,2rem);gap:1rem}
+.nav-word{font-family:var(--display);font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:900;letter-spacing:2px;color:var(--text);white-space:nowrap}
+.nav-word span{color:var(--mint)}
+.nav-links{display:flex;gap:0;flex:1;overflow-x:auto}
+.nav-links::-webkit-scrollbar{display:none}
+.nb{padding:0 14px;height:52px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;background:none;border-left:none;border-right:none;border-top:none}
+.nb:hover{color:var(--text)}
+.nb.on{color:var(--mint);border-bottom-color:var(--mint)}
+.nav-cta{margin-left:auto;padding:8px 20px;background:var(--mint);color:var(--text-inv);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:var(--r);flex-shrink:0;transition:all 0.18s}
+.nav-cta:hover{background:rgba(255,255,255,0.15);color:var(--text);outline:1px solid rgba(255,255,255,0.4)}
+
+.hero{max-width:1280px;margin:0 auto;padding:clamp(3rem,7vw,5.5rem) clamp(1rem,3vw,2rem) 0}
+.hero-eye{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--mint);margin-bottom:1rem;display:flex;align-items:center;gap:12px}
+.hero-eye::before{content:'';display:block;width:28px;height:1px;background:var(--mint)}
+.hero-h1{font-family:var(--display);font-size:clamp(52px,11vw,107px);font-weight:900;line-height:0.87;letter-spacing:1.5px;color:var(--text);margin-bottom:0.5rem}
+.hero-h1 .c1{color:var(--mint)}
+.hero-sub2{font-family:var(--body);font-size:clamp(11px,1.4vw,15px);font-weight:300;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin:0.8rem 0 1.4rem;display:block}
+.hero-desc{font-size:clamp(13px,1.4vw,15px);font-weight:300;color:var(--text-muted);max-width:520px;line-height:1.75;margin-bottom:2rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:3rem}
+.apill{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border:1px solid var(--border-dim);border-radius:var(--r);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--text-muted);transition:all 0.15s}
+.apill:hover{border-color:var(--mint);color:var(--mint)}
+.apill .dot{width:6px;height:6px;border-radius:50%}
+
+.stats-strip{background:var(--slate);border-top:1px solid var(--border-dim);border-bottom:1px solid var(--border-dim)}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 clamp(1rem,3vw,2rem)}
+.stat{padding:1.5rem 0;border-right:1px solid var(--border-dim);text-align:center}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--display);font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1;color:var(--mint)}
+.stat-l{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:4px}
+
+.wrap{max-width:1280px;margin:0 auto;padding:clamp(2rem,4vw,3.5rem) clamp(1rem,3vw,2rem)}
+.s-eye{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--mint);margin-bottom:0.5rem}
+.s-title{font-family:var(--display);font-size:clamp(2rem,5vw,4.5rem);font-weight:900;line-height:0.9;letter-spacing:1px;color:var(--text);margin-bottom:0.75rem}
+.s-desc{font-size:13px;font-weight:300;color:var(--text-muted);max-width:500px;line-height:1.75;margin-bottom:2rem}
+
+.tabs{display:flex;border-bottom:1px solid var(--border-dim);margin-bottom:1.5rem;overflow-x:auto}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:12px 16px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all 0.15s;background:none;border-left:none;border-right:none;border-top:none}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--mint);border-bottom-color:var(--mint)}
+
+.srow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:1.75rem}
+.sbox{position:relative;flex:1;min-width:180px;max-width:320px}
+.sinput{width:100%;padding:10px 12px 10px 36px;background:var(--slate);border:1px solid var(--border-dim);border-radius:var(--r-card);font-size:13px;color:var(--text);font-family:var(--body);outline:none;transition:border-color 0.15s}
+.sinput::placeholder{color:var(--text-muted)}
+.sinput:focus{border-color:var(--mint)}
+.sico{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:13px;pointer-events:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:6px 13px;border:1px solid var(--border-dim);border-radius:var(--r);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);background:transparent;transition:all 0.15s}
+.chip:hover{border-color:var(--mint);color:var(--mint)}
+.chip.on{background:var(--mint);color:var(--text-inv);border-color:var(--mint)}
+
+.pg{margin-bottom:2.5rem}
+.ph{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border-dim);margin-bottom:10px}
+.pdot{width:9px;height:9px;border-radius:50%}
+.pname{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text)}
+.pcnt{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-left:auto}
+
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(296px,1fr));gap:1px;background:var(--border-dim)}
+.tc{background:var(--canvas);padding:18px 20px;cursor:pointer;transition:background 0.15s;position:relative;overflow:hidden}
+.tc::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:transparent;transition:background 0.2s}
+.tc:hover{background:var(--slate)}
+.tc.exp{background:var(--surface)}
+.tc.exp::after{background:var(--mint)}
+.ttop{display:flex;gap:11px;align-items:flex-start}
+.tico{width:30px;height:30px;border:1px solid var(--border-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.tmeta{flex:1;min-width:0}
+.tname{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
+.tauth{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-muted);margin-top:2px}
+.tobj{font-size:12px;font-weight:300;color:var(--text-muted);margin-top:6px;line-height:1.5}
+.texp{color:var(--text-muted);font-size:10px;transition:transform 0.2s;margin-top:1px;flex-shrink:0}
+.tc.exp .texp{transform:rotate(180deg);color:var(--mint)}
+.tdet{display:none;margin-top:13px;padding-top:13px;border-top:1px solid var(--border-dim)}
+.tc.exp .tdet{display:block}
+.drows{display:flex;flex-direction:column;gap:7px}
+.dr{display:grid;grid-template-columns:68px 1fr;gap:8px;align-items:baseline}
+.dl{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--mint)}
+.dv{font-size:12px;font-weight:400;color:var(--text-off);line-height:1.5}
+.pbadges{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.pb{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:var(--r);border:1px solid}
+.bref{font-family:var(--mono);font-size:10px;letter-spacing:0.4px;color:var(--text-muted);margin-top:9px;padding:7px 11px;border:1px solid var(--border-dim);border-radius:8px;line-height:1.5}
+
+.stream{position:relative;padding-left:2rem}
+.stream::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:repeating-linear-gradient(to bottom,var(--purple-rule) 0,var(--purple-rule) 6px,transparent 6px,transparent 12px)}
+.si{position:relative;margin-bottom:2px}
+.si::before{content:'';position:absolute;left:-2rem;top:24px;width:13px;height:13px;border-radius:50%;background:var(--canvas);border:2px solid var(--border-dim);transition:all 0.2s;z-index:1}
+.si.open::before{border-color:var(--mint);background:var(--mint)}
+.sh{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;cursor:pointer;border:1px solid var(--border-dim);border-radius:var(--r-card);transition:all 0.2s;background:var(--canvas)}
+.sh:hover{border-color:var(--border-mid);background:var(--slate)}
+.si.open .sh{border-color:var(--mint);border-radius:var(--r-card) var(--r-card) 0 0;background:var(--surface)}
+.snum{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);flex-shrink:0;padding-top:2px;min-width:22px}
+.sem{font-size:1.2rem;flex-shrink:0}
+.stitle{font-size:13px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
+.schev{font-size:9px;color:var(--text-muted);transition:transform 0.25s;flex-shrink:0;margin-top:3px}
+.si.open .schev{transform:rotate(90deg);color:var(--mint)}
+.sbody{display:none;padding:16px 18px 18px;border:1px solid var(--mint);border-top:none;border-radius:0 0 var(--r-card) var(--r-card);background:var(--surface)}
+.si.open .sbody{display:block}
+.sdesc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.65;margin-bottom:12px}
+.scombo{border:1px solid var(--mint);border-radius:var(--r-card);padding:12px 14px;margin-bottom:10px;background:rgba(60,255,208,0.03)}
+.sck{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint);margin-bottom:4px}
+.sct{font-size:13px;font-weight:600;color:var(--text)}
+.sapr{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.tpills{display:flex;flex-wrap:wrap;gap:5px}
+.tp{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border:1px solid var(--border-dim);border-radius:var(--r);font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);background:var(--canvas);transition:all 0.15s;cursor:pointer}
+.tp:hover{border-color:var(--mint);color:var(--mint);background:rgba(60,255,208,0.05)}
+.tpdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+.tile{border-radius:var(--r-feat);padding:clamp(20px,3vw,28px);margin-bottom:2rem}
+.tile-eye{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;opacity:0.65}
+.tile-h{font-family:var(--display);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:0.92;letter-spacing:0.5px}
+.author-info{padding:0 0 2rem}
+.author-info p{font-size:13px;font-weight:300;color:var(--text-muted);max-width:680px;line-height:1.7;margin-bottom:1rem}
+.books{display:flex;flex-direction:column;gap:6px}
+.book-i{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.8px;color:var(--text-muted)}
+.book-i::before{content:'';width:14px;height:1px;background:var(--border-mid);flex-shrink:0}
+
+.fw-wrap{border:1px solid var(--border-dim);border-radius:var(--r-feat);overflow:hidden;margin-bottom:2rem}
+.fw-head{padding:18px 22px;border-bottom:1px solid var(--border-dim);display:flex;align-items:center;gap:12px}
+.fw-phases{display:flex;background:var(--border-dim);gap:1px;overflow-x:auto}
+.fw-phase{flex:1;min-width:90px;background:var(--canvas);padding:18px 12px;text-align:center;transition:background 0.15s}
+.fw-phase:hover{background:var(--surface)}
+.fwico{font-size:1.3rem;display:block;margin-bottom:8px}
+.fwname{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--text);margin-bottom:4px;line-height:1.4}
+.fwcnt{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+.pring{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border-dim);margin-top:2rem}
+.pr{background:var(--canvas);padding:22px;transition:background 0.15s}
+.pr:hover{background:var(--surface)}
+.prn{font-family:var(--display);font-size:52px;font-weight:900;line-height:1;-webkit-text-stroke:1px var(--mint);-webkit-text-fill-color:transparent;margin-bottom:7px}
+.prt{font-family:var(--display);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:900;color:var(--text);line-height:0.95;letter-spacing:0.5px;margin-bottom:9px}
+.prd{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.65}
+
+footer{border-top:1px solid var(--border-dim);padding:clamp(2rem,4vw,3rem) clamp(1rem,3vw,2rem);margin-top:5rem}
+.foot{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-end}
+.fbrand{font-family:var(--display);font-size:clamp(2.5rem,6vw,5rem);font-weight:900;letter-spacing:2px;line-height:1;color:var(--border-dim)}
+.fbrand span{color:var(--mint)}
+.fmeta{font-family:var(--mono);font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--text-muted);line-height:2.2;text-align:right}
+
+.vpanel{display:none}
+.vpanel.on{display:block}
+::-webkit-scrollbar{width:5px;height:4px}
+::-webkit-scrollbar-track{background:var(--canvas)}
+::-webkit-scrollbar-thumb{background:var(--slate);border-radius:3px}
+
+@media(max-width:900px){.stats-inner{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.fw-phases{flex-direction:column}.fw-phase{display:flex;align-items:center;gap:14px;text-align:left}.fwico{margin-bottom:0;font-size:1.1rem}.nav-cta{display:none}}
+@media(max-width:600px){.tgrid{grid-template-columns:1fr}.stream{padding-left:1.25rem}.dr{grid-template-columns:1fr;gap:2px}.dl{margin-top:7px}.hero-h1{font-size:50px}}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.tc,.si,.pr{animation:fu 0.25s ease both}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-word">DT<span>&</span>I</div>
+    <div class="nav-links">
+      <button class="nb on" onclick="showP('herramientas',this)">Herramientas</button>
+      <button class="nb" onclick="showP('sintomas',this)">Por síntoma</button>
+      <button class="nb" onclick="showP('autores',this)">Autores</button>
+      <button class="nb" onclick="showP('marco',this)">Marco</button>
+    </div>
+    <button class="nav-cta">90+ Tools ↗</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-eye">Repositorio Estratégico Unificado</p>
+  <h1 class="hero-h1">DESIGN<br/><span class="c1">THINKING</span></h1>
+  <span class="hero-sub2">& Innovación de Negocio</span>
+  <p class="hero-desc">90+ herramientas, frameworks y metodologías de las seis fuentes clave de innovación contemporánea. Filtra por fase del proceso o por el síntoma que enfrentas hoy.</p>
+  <div class="hero-pills">
+    <div class="apill"><span class="dot" style="background:var(--mint)"></span>Osterwalder / Strategyzer</div>
+    <div class="apill"><span class="dot" style="background:#3860be"></span>Knapp / Zeratsky</div>
+    <div class="apill"><span class="dot" style="background:var(--uv)"></span>Michael Lewrick</div>
+    <div class="apill"><span class="dot" style="background:var(--yellow)"></span>Keeley / Doblin</div>
+    <div class="apill"><span class="dot" style="background:var(--orange)"></span>Dieffenbacher / UNITE</div>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">90+</div><div class="stat-l">Herramientas</div></div>
+    <div class="stat"><div class="stat-n">6</div><div class="stat-l">Fuentes</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Fases</div></div>
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">Síntomas</div></div>
+  </div>
+</div>
+
+<div id="herramientas" class="vpanel on">
+  <div class="wrap">
+    <p class="s-eye">Vista A</p>
+    <h2 class="s-title">HERRAMIENTAS<br/>POR FASE</h2>
+    <p class="s-desc">Clic en cualquier tarjeta para ver cuándo aplica, duración, output, ejemplo concreto y fuente bibliográfica exacta.</p>
+    <div class="tabs">
+      <button class="tab on" onclick="fPhase('all',this)">Todas</button>
+      <button class="tab" onclick="fPhase('empatizar',this)">Empatizar</button>
+      <button class="tab" onclick="fPhase('definir',this)">Definir</button>
+      <button class="tab" onclick="fPhase('idear',this)">Idear</button>
+      <button class="tab" onclick="fPhase('prototipar',this)">Prototipar</button>
+      <button class="tab" onclick="fPhase('testear',this)">Testear</button>
+      <button class="tab" onclick="fPhase('estrategia',this)">Estrategia</button>
+      <button class="tab" onclick="fPhase('ejecucion',this)">Ejecución</button>
+    </div>
+    <div class="srow">
+      <div class="sbox"><span class="sico">⌕</span><input class="sinput" type="text" placeholder="Buscar herramienta..." oninput="sTools(this.value)"/></div>
+      <div class="chips">
+        <button class="chip on" onclick="fAuth('all',this)">Todos</button>
+        <button class="chip" onclick="fAuth('osterwalder',this)">Osterwalder</button>
+        <button class="chip" onclick="fAuth('knapp',this)">Knapp</button>
+        <button class="chip" onclick="fAuth('lewrick',this)">Lewrick</button>
+        <button class="chip" onclick="fAuth('doblin',this)">Keeley / Doblin</button>
+        <button class="chip" onclick="fAuth('unite',this)">UNITE</button>
+      </div>
+    </div>
+    <div id="tools-container"></div>
+  </div>
+</div>
+
+<div id="sintomas" class="vpanel">
+  <div class="wrap">
+    <p class="s-eye">Vista B</p>
+    <h2 class="s-title">POR SÍNTOMA<br/>DE NEGOCIO</h2>
+    <p class="s-desc">Identifica tu problema actual y descubre el combo de herramientas más adecuado con el enfoque metodológico recomendado.</p>
+    <div class="stream" id="symptoms-container"></div>
+  </div>
+</div>
+
+<div id="autores" class="vpanel">
+  <div class="wrap">
+    <p class="s-eye">Fuentes</p>
+    <h2 class="s-title">LAS TRES<br/>ESCUELAS</h2>
+    <p class="s-desc">Cada escuela aporta una perspectiva distinta y complementaria al ecosistema de innovación contemporánea.</p>
+
+    <div class="tile" style="background:var(--mint);color:var(--text-inv)">
+      <div class="tile-eye">Escuela 01 — Estrategia de Negocio</div>
+      <div class="tile-h">OSTERWALDER<br/>& STRATEGYZER</div>
+    </div>
+    <div class="author-info">
+      <p>El equipo de Strategyzer transformó la forma en que las organizaciones diseñan, prueban y gestionan modelos de negocio. Su enfoque combina herramientas visuales rigurosas con metodologías de experimentación inspiradas en el método científico. Son los referentes mundiales en innovación de modelo de negocio a escala corporativa.</p>
+      <div class="books">
+        <div class="book-i">Business Model Generation (2009)</div>
+        <div class="book-i">Value Proposition Design (2014)</div>
+        <div class="book-i">Testing Business Ideas (2019)</div>
+        <div class="book-i">The Invincible Company (2020)</div>
+      </div>
+    </div>
+
+    <div class="tile" style="background:var(--uv-dim);color:var(--text)">
+      <div class="tile-eye">Escuela 02 — Sprint & Velocidad</div>
+      <div class="tile-h">KNAPP<br/>& ZERATSKY</div>
+    </div>
+    <div class="author-info">
+      <p>Creadores del Design Sprint en Google Ventures, Knapp y Zeratsky revolucionaron la forma en que los equipos atacan problemas críticos. Su método comprime meses de trabajo en 5 días, pasando de hipótesis a evidencia real con usuarios. Con Click (2025) amplían su visión al Foundation Sprint y los hábitos de los mejores equipos del mundo.</p>
+      <div class="books">
+        <div class="book-i">Sprint (2016)</div>
+        <div class="book-i">Make Time (2018)</div>
+        <div class="book-i">Click (2025)</div>
+      </div>
+    </div>
+
+    <div class="tile" style="background:var(--yellow);color:var(--text-inv)">
+      <div class="tile-eye">Escuela 03 — Design Thinking & Facilitación</div>
+      <div class="tile-h">MICHAEL<br/>LEWRICK</div>
+    </div>
+    <div class="tile" style="background:var(--orange);color:#000">
+      <div class="tile-eye">Fuente 04 — Tipos de Innovación</div>
+      <div class="tile-h">KEELEY,<br/>WALTERS &amp; DOBLIN</div>
+    </div>
+    <div class="author-info">
+      <p>Larry Keeley y el equipo de Doblin/Monitor Deloitte desarrollaron durante 20 años el framework de los Diez Tipos de Innovación, analizando empíricamente miles de innovaciones exitosas. Su hallazgo más poderoso: las empresas que innovan solo en producto son las más fáciles de copiar. Las innovaciones más defensibles combinan 5, 6 o 7 tipos simultáneamente. El framework proporciona un lenguaje universal para diagnosticar, diseñar y medir la innovación más allá del producto.</p>
+      <div class="books">
+        <div class="book-i">Ten Types of Innovation (2013)</div>
+      </div>
+    </div>
+
+    <div class="tile" style="background:#1e6bff;color:#fff">
+      <div class="tile-eye">Fuente 05 — Innovación Empresarial Integral</div>
+      <div class="tile-h">DIEFFENBACHER<br/>&amp; UNITE</div>
+    </div>
+    <div class="author-info">
+      <p>Stefan Dieffenbacher y Digital Leadership AG construyeron el framework UNITE: más de 20 canvases integrados que van desde el Extended Business Model Canvas hasta el JTBD Job Journey Navigator. Su enfoque sintetiza lo mejor de Osterwalder, Christensen, Blank y el Design Thinking. El método JTBD que proponen tiene una tasa de éxito del 86% vs el 17% promedio de métodos tradicionales de innovación, según un estudio independiente de Strategyn con 413 empresas.</p>
+      <div class="books">
+        <div class="book-i">How to Create Innovation (2024)</div>
+      </div>
+    </div>
+
+    <div class="tile" style="background:#2d2d2d;color:#fff">
+      <div class="tile-eye">Fuente 06 — Productividad &amp; Foco de Equipos</div>
+      <div class="tile-h">MAKE TIME —<br/>KNAPP &amp; ZERATSKY</div>
+    </div>
+    <div class="author-info">
+      <p>Make Time es el sistema de productividad personal y de equipos que Knapp y Zeratsky desarrollaron después del Sprint. Sus 4 pasos diarios (Highlight → Laser → Energize → Reflect) y 87 tácticas son esenciales para equipos de innovación que necesitan proteger el tiempo de trabajo profundo de las distracciones del "Club de los Ajetreados" y las "Piscinas Infinitas" de contenido. Complementa perfectamente al Design Sprint: el Sprint organiza la semana, Make Time organiza cada día.</p>
+      <div class="books">
+        <div class="book-i">Make Time (2018)</div>
+      </div>
+    </div>
+
+    <div class="author-info">
+      <p>Lewrick, Link y Leifer (con raíces en el HPI y Stanford d.school) construyeron el compendio más completo de herramientas de Design Thinking. Su trabajo integra DT con Lean Startup, Agile y Business Model Innovation. The Design Thinking Playbook y el Toolbox son referencias obligadas para facilitadores y equipos de innovación en todo el mundo.</p>
+      <div class="books">
+        <div class="book-i">The Design Thinking Playbook (2018)</div>
+        <div class="book-i">The Design Thinking Toolbox (2020)</div>
+        <div class="book-i">Design Thinking for Business Growth (2022)</div>
+        <div class="book-i">Design Thinking and Innovation Metrics (2022)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="marco" class="vpanel">
+  <div class="wrap">
+    <p class="s-eye">Marco metodológico</p>
+    <h2 class="s-title">EL PROCESO<br/>INTEGRADO</h2>
+    <p class="s-desc">Las fases no son lineales — son iterativas. Puedes entrar en cualquier punto según el problema y el nivel de madurez de tu proyecto.</p>
+    <div class="fw-wrap">
+      <div class="fw-head">
+        <span style="font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint)">Proceso DT</span>
+        <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted)">7 Fases · Iterativo · No lineal</span>
+      </div>
+      <div class="fw-phases" id="fw-phases"></div>
+    </div>
+    <div class="pring">
+      <div class="pr"><div class="prn">01</div><div class="prt">PRIMERO<br/>LAS PERSONAS</div><div class="prd">Toda solución comienza con comprensión profunda del ser humano: sus necesidades reales, sus dolores y sus ganancias esperadas. La empatía no es un paso — es un modo de ver.</div></div>
+      <div class="pr"><div class="prn" style="-webkit-text-stroke-color:var(--uv)">02</div><div class="prt">EXPERIMENTAR<br/>ANTES DE ESCALAR</div><div class="prd">No construyas para aprender. Aprende para construir. La evidencia de experimentos baratos y rápidos vale infinitamente más que meses de desarrollo sin contacto con el mercado real.</div></div>
+      <div class="pr"><div class="prn" style="-webkit-text-stroke-color:var(--yellow)">03</div><div class="prt">DIVERGER<br/>Y CONVERGER</div><div class="prd">La innovación requiere expandir el espacio de posibilidades (divergir) antes de elegir la mejor opción (converger). Alternar entre ambos modos es la esencia del proceso creativo.</div></div>
+      <div class="pr"><div class="prn" style="-webkit-text-stroke-color:var(--pink)">04</div><div class="prt">EXPLORAR<br/>Y EXPLOTAR</div><div class="prd">Las organizaciones invencibles gestionan simultáneamente el portafolio actual (Exploit) y sus apuestas de futuro (Explore). La ambidestreza organizacional es supervivencia, no opción.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW SCHOOLS PLACEHOLDER -->
+<footer>
+  <div class="foot">
+    <div class="fbrand">DT<span>&</span>I</div>
+    <div class="fmeta">
+      <div>Repositorio Estratégico Unificado</div>
+      <div>Osterwalder · Knapp · Lewrick</div>
+      <div style="color:var(--border-dim)">Generado con Claude · Anthropic · 2025</div>
+    </div>
+  </div>
+</footer>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+
+const PH={empatizar:{label:'Empatizar',color:'#3cffd0',bd:'rgba(60,255,208,0.28)',bg:'rgba(60,255,208,0.07)'},definir:{label:'Definir',color:'#3860be',bd:'rgba(56,96,190,0.28)',bg:'rgba(56,96,190,0.07)'},idear:{label:'Idear',color:'#a47fff',bd:'rgba(164,127,255,0.28)',bg:'rgba(164,127,255,0.07)'},prototipar:{label:'Prototipar',color:'#ffe347',bd:'rgba(255,227,71,0.28)',bg:'rgba(255,227,71,0.07)'},testear:{label:'Testear',color:'#ff6b20',bd:'rgba(255,107,32,0.28)',bg:'rgba(255,107,32,0.07)'},estrategia:{label:'Estrategia',color:'#ff47a0',bd:'rgba(255,71,160,0.28)',bg:'rgba(255,71,160,0.07)'},ejecucion:{label:'Ejecución',color:'#7fff47',bd:'rgba(127,255,71,0.28)',bg:'rgba(127,255,71,0.07)'}};
+const FWICO=['🧭','🎯','💡','🔧','🧪','📊','🚀'];
+
+const T=[
+{id:1,name:'Business Model Canvas',author:'Osterwalder / Strategyzer',ak:'osterwalder',icon:'🗺',obj:'Visualizar y diseñar el modelo de negocio completo en 9 bloques interdependientes',ph:['estrategia'],when:'Cuando necesitas diseñar, comunicar o reinventar un modelo de negocio completo',dur:'2-4 horas · iterativo después',out:'Lienzo de modelo de negocio con 9 bloques completados',ex:'Una startup mapea cómo Amazon cobra a vendedores (comisiones) y compradores (Prime), revelando el patrón de plataforma multilateral',book:'Business Model Generation (2009) — cap. 1, pág. 20-51'},
+{id:2,name:'Value Proposition Canvas',author:'Osterwalder / Strategyzer',ak:'osterwalder',icon:'💎',obj:'Alinear la propuesta de valor con los trabajos, dolores y ganancias reales del cliente',ph:['empatizar','definir','estrategia'],when:'Cuando no tienes claro qué valora tu cliente o cómo diferenciarte',dur:'2-3 horas de taller',out:'Mapa de valor y perfil del cliente con fit identificado',ex:'Una fintech descubre que sus clientes no quieren "gestión de finanzas" sino "no tener vergüenza en la caja"',book:'Value Proposition Design (2014) · Testing Business Ideas (2019) — pág. 22'},
+{id:3,name:'Portfolio Map',author:'Osterwalder / Strategyzer',ak:'osterwalder',icon:'📊',obj:'Gestionar el portafolio Exploit (negocios actuales) y Explore (nuevas apuestas) simultáneamente',ph:['estrategia'],when:'Cuando necesitas decidir dónde invertir y qué negocios preservar vs explorar',dur:'Medio día con equipo directivo',out:'Mapa de portafolio con riesgo de disrupción e innovación visibles',ex:'Una empresa de medios mapea su negocio impreso (Exploit/alto riesgo) junto a experimentos digitales (Explore)',book:'The Invincible Company (2020) — pág. 10-43'},
+{id:4,name:'Culture Map',author:'Osterwalder & Dave Gray',ak:'osterwalder',icon:'🌿',obj:'Diagnosticar, diseñar y transformar la cultura de innovación organizacional',ph:['estrategia','ejecucion'],when:'Cuando la cultura es el obstáculo real para innovar',dur:'Taller de 1 día',out:'Mapa de cultura con outcomes, comportamientos y habilitadores/bloqueadores',ex:'Una empresa mapea por qué sus equipos no experimentan: el bloqueador es el sistema de bonos que penaliza el fracaso',book:'The Invincible Company (2020) — pág. 296-345'},
+{id:5,name:'Assumptions Map',author:'Osterwalder / Bland',ak:'osterwalder',icon:'🎯',obj:'Identificar y priorizar las hipótesis más riesgosas (deseabilidad, viabilidad, factibilidad)',ph:['definir','testear'],when:'Antes de diseñar experimentos: ¿qué debemos probar primero?',dur:'2-3 horas',out:'Mapa 2x2 con hipótesis priorizadas por importancia vs evidencia',ex:'Un equipo identifica que "los clientes pagarán $50/mes" es la hipótesis más riesgosa — sin ninguna evidencia',book:'Testing Business Ideas (2019) — pág. 36-40'},
+{id:6,name:'Test Card',author:'Osterwalder / Bland',ak:'osterwalder',icon:'🧪',obj:'Diseñar experimentos de negocio rigurosos con hipótesis, método, métrica y criterio de éxito',ph:['testear'],when:'Antes de cualquier experimento de mercado',dur:'30-60 min por tarjeta',out:'Tarjeta de experimento con protocolo definido',ex:'"Hipótesis: 20% de visitantes se suscriben. Método: landing. Métrica: conversión. Criterio: ≥15%"',book:'Testing Business Ideas (2019) — pág. 43-47'},
+{id:7,name:'Learning Card',author:'Osterwalder / Bland',ak:'osterwalder',icon:'📋',obj:'Capturar aprendizajes de experimentos y decidir si validar, invalidar o pivotar',ph:['testear'],when:'Al terminar cualquier experimento de negocio',dur:'1 hora post-experimento',out:'Tarjeta de aprendizaje con insights y decisiones',ex:'El equipo aprende que el 8% convirtió (vs 15% esperado): pivotean el precio antes de seguir invirtiendo',book:'Testing Business Ideas (2019) — pág. 50-55'},
+{id:8,name:'Experiment Library (44 experimentos)',author:'Osterwalder / Bland',ak:'osterwalder',icon:'📚',obj:'Seleccionar el experimento correcto según fidelidad y tipo de hipótesis',ph:['testear'],when:'Cuando tienes hipótesis priorizadas y necesitas el experimento más eficiente',dur:'Variable: entrevistas (1 sem) · MVP (4-8 sem)',out:'Evidencia para validar/invalidar hipótesis',ex:'Concierge: servicio manual para 20 clientes antes de automatizar. Fake door: botón "comprar" antes de construir',book:'Testing Business Ideas (2019) — sección 3, pág. 105-310'},
+{id:9,name:'Design Sprint (5 días)',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'⚡',obj:'Resolver un problema crítico y probar una solución con usuarios reales en solo 5 días',ph:['definir','idear','prototipar','testear'],when:'Problema crítico sin solución clara, deadline apretado, o gran inversión en juego',dur:'5 días completos — lunes a viernes',out:'Prototipo realista + hallazgos de 5 entrevistas con usuarios',ex:'Slack usó un sprint para probar 2 prototipos de marketing: eligieron el "product tour" sobre el "work game"',book:'Sprint (2016) — completo; Click (2025) — cap. Design Sprint'},
+{id:10,name:'Foundation Sprint',author:'Knapp / Zeratsky',ak:'knapp',icon:'🏛',obj:'Alinear al equipo en el problema correcto, cliente clave y diferenciador antes de construir',ph:['definir','estrategia'],when:'Al inicio de un proyecto, producto o empresa nueva — sin excepción',dur:'2 días',out:'Scorecard · perfil de cliente · diferenciador único · modelo básico',ex:'Una startup pasa 2 días definiendo QUÉ problema resuelven y PARA QUIÉN antes de diseñar cualquier cosa',book:'Click (2025) — capítulos 4-7'},
+{id:11,name:'Sprint Map (Lunes)',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'🗺',obj:'Mapear el problema desde la perspectiva del cliente e identificar el foco del sprint',ph:['definir'],when:'Día 1 del Design Sprint; también para alinear equipos sin sprint completo',dur:'1 día — lunes del sprint',out:'Mapa de proceso del cliente + Sprint Question + Target seleccionado',ex:'Blue Bottle Coffee mapea el journey del cliente desde "descubrir café especial" hasta "comprar online"',book:'Sprint (2016) — cap. 3-5, pág. 53-91'},
+{id:12,name:'Lightning Demos',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'💡',obj:'Revisar soluciones inspiradoras de otras industrias para alimentar la ideación',ph:['idear'],when:'Al inicio de la fase de ideación para evitar pensamiento en silos sectoriales',dur:'2-3 horas — mañana del martes',out:'Whiteboard con 10-20 ideas inspiradoras capturadas',ex:'Equipo de salud revisa cómo Amazon, Airbnb y Duolingo diseñan onboarding antes de idear su propia solución',book:'Sprint (2016) — cap. 6, pág. 96-102'},
+{id:13,name:'Four-Step Sketch / Crazy 8s',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'✏️',obj:'Generar múltiples soluciones individuales en papel, eliminando el groupthink',ph:['idear'],when:'Cuando el equipo se queda en debate circular sin generar soluciones concretas',dur:'Tarde del martes — ~3 horas',out:'Soluciones individuales en papel (storyboard de 3 paneles)',ex:'Cada miembro del equipo de Slack bocetó su propia idea de marketing website sin influencia del grupo',book:'Sprint (2016) — cap. 7-8, pág. 103-127'},
+{id:14,name:'Sticky Decision / Heat Map',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'🗳',obj:'Decidir qué soluciones prototipar usando un proceso que evita el debate político',ph:['definir'],when:'Cuando hay múltiples ideas y el equipo no puede decidir sin debate largo',dur:'Mañana del miércoles — ~3 horas',out:'Solución(es) seleccionadas para prototipado',ex:'Con puntos silenciosos y supervoto del Decider, el equipo de Slack eligió entre 12 sketches en 1 hora',book:'Sprint (2016) — cap. 9-11, pág. 128-147'},
+{id:15,name:'Storyboard (Miércoles)',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'📖',obj:'Planificar el prototipo como secuencia de 10-15 escenas antes de construirlo',ph:['prototipar'],when:'Antes de construir el prototipo para ahorrar tiempo y evitar lagunas',dur:'Tarde del miércoles — ~3 horas',out:'Storyboard de 10-15 paneles que guía el prototipado',ex:'El equipo de One Medical dibujó sala de espera, consulta y recepción antes de construir mockups digitales',book:'Sprint (2016) — cap. 12, pág. 148-165'},
+{id:16,name:'Prototipo de Sprint (Jueves)',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'🔧',obj:'Construir un prototipo suficientemente real en un día usando herramientas de presentación',ph:['prototipar'],when:'Cuando se necesita probar una experiencia sin construir el producto real',dur:'1 día — jueves del sprint',out:'Prototipo clickeable/físico/narrativo que simula la experiencia real',ex:'Herramienta favorita: Keynote/PowerPoint para apps — cualquier cosa que parezca real sin código',book:'Sprint (2016) — cap. 14, pág. 183-207'},
+{id:17,name:'Five-Act Interview (Viernes)',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'🎙',obj:'Entrevistar a 5 usuarios con el prototipo para identificar patrones de comportamiento',ph:['testear'],when:'Al final de cualquier ciclo de prototipado para obtener retroalimentación real',dur:'1 día — viernes del sprint',out:'Hallazgos cualitativos con patrones claros en 5 usuarios',ex:'5 entrevistas revelan el 85% de los problemas de usabilidad significativos (regla de Nielsen)',book:'Sprint (2016) — cap. 15-16, pág. 209-230'},
+{id:18,name:'Note-and-Vote',author:'Knapp / Zeratsky / Kowitz',ak:'knapp',icon:'📝',obj:'Tomar decisiones rápidas de grupo sin debate prolongado en solo 10 minutos',ph:['definir','idear'],when:'Cada vez que el equipo necesita decidir algo rápido sin debate',dur:'10-15 minutos',out:'Decisión de grupo con máxima participación y mínimo tiempo',ex:'El equipo decide en 10 min el nombre de la empresa ficticia para el prototipo sin debatir 1 hora',book:'Sprint (2016) — pág. 146'},
+{id:19,name:'Problem Statement',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'❓',obj:'Formular el problema correcto antes de buscar soluciones, desde la perspectiva del usuario',ph:['definir'],when:'Al inicio de cualquier proyecto para evitar resolver el problema equivocado',dur:'30-60 minutos',out:'Enunciado de problema centrado en el usuario (una oración)',ex:'"Los padres de familia necesitan una forma de [necesidad] porque [insight inesperado]"',book:'Design Thinking Toolbox (2020) — pág. 49'},
+{id:20,name:'Interview for Empathy',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'👂',obj:'Descubrir las necesidades profundas y motivaciones reales del usuario mediante entrevista abierta',ph:['empatizar'],when:'Al inicio de cualquier proyecto de innovación centrado en personas',dur:'45-60 min por entrevista',out:'Notas con citas, comportamientos y necesidades latentes',ex:'Al entrevistar padres sobre educación, descubres que el miedo real es "que mi hijo no encaje", no "que no aprenda"',book:'Design Thinking Toolbox (2020) — pág. 57'},
+{id:21,name:'Empathy Map',author:'Dave Gray / Lewrick',ak:'lewrick',icon:'🧠',obj:'Sintetizar lo que el usuario piensa, siente, dice, hace, escucha y ve en un solo lienzo',ph:['empatizar','definir'],when:'Después de entrevistas para sintetizar y generar empatía colectiva en el equipo',dur:'1-2 horas',out:'Mapa de empatía completo con insights sintetizados',ex:'Equipo descubre que los gerentes DICEN "quiero eficiencia" pero SIENTEN "miedo de perder control"',book:'Design Thinking Toolbox (2020) — pág. 93; Design Thinking Playbook — cap. 3'},
+{id:22,name:'Persona / User Profile',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'👤',obj:'Crear un arquetipo representativo del usuario para guiar decisiones de diseño durante el proyecto',ph:['definir'],when:'Después de investigación de usuarios, para mantener el foco humano durante la ideación',dur:'2-3 horas',out:'1-3 fichas de persona con nombre, contexto, necesidades y citas',ex:'"María, 42, gerente de PYME, usa WhatsApp para todo, no confía en apps complejas"',book:'Design Thinking Toolbox (2020) — pág. 97; Design Thinking for Business Growth — pág. 193'},
+{id:23,name:'Customer Journey Map',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🛤',obj:'Mapear la experiencia completa del cliente en el tiempo, identificando dolores y oportunidades',ph:['empatizar','definir'],when:'Cuando el problema está en la experiencia del servicio o múltiples touchpoints',dur:'3-4 horas',out:'Mapa visual del journey con touchpoints, emociones y oportunidades',ex:'Un banco mapea la solicitud de crédito: 14 pasos, 3 visitas físicas, 6 dolores identificados',book:'Design Thinking Toolbox (2020) — pág. 103; Design Thinking Playbook — pág. 72'},
+{id:24,name:'"How Might We…" (HMW)',author:'Lewrick / IDEO / Knapp',ak:'lewrick',icon:'🔍',obj:'Transformar insights y problemas en preguntas de oportunidad que inviten a la ideación creativa',ph:['definir','idear'],when:'Justo antes de la ideación, para reencuadrar problemas como oportunidades',dur:'15-30 minutos',out:'Set de 5-15 preguntas HMW que guían la sesión de ideación',ex:'"Pacientes olvidan medicamentos" → HMW: "¿Cómo podríamos hacer que tomar el medicamento sea lo más placentero del día?"',book:'Design Thinking Toolbox (2020) — pág. 125; Sprint (2016) — pág. 74-80'},
+{id:25,name:'Brainstorming',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🌪',obj:'Generar la mayor cantidad posible de ideas sin juicio, construyendo sobre las ideas de otros',ph:['idear'],when:'Primera fase de ideación para explorar el espacio de soluciones con amplitud',dur:'20-60 minutos',out:'50-200 ideas en post-its para priorizar',ex:'Reglas: una idea por post-it · no criticar · construir sobre ideas ajenas · cantidad sobre calidad · ideas locas bienvenidas',book:'Design Thinking Toolbox (2020) — pág. 151; Design Thinking Playbook — pág. 100'},
+{id:26,name:'Brainwriting / 6-3-5',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'✍️',obj:'Variante silenciosa del brainstorming: 6 personas, 3 ideas, 5 minutos, pasando la hoja',ph:['idear'],when:'Cuando algunos miembros del equipo dominan la conversación verbal y bloquean a otros',dur:'30 minutos totales',out:'Hasta 108 ideas iniciales en 30 minutos',ex:'En 5 rondas de 5 min, 6 personas generan 108 ideas — ideal cuando la jerarquía bloquea la creatividad',book:'Design Thinking Toolbox (2020) — pág. 163'},
+{id:27,name:'2x2 Matrix (Priorización)',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'⊞',obj:'Priorizar ideas evaluándolas en dos dimensiones (ej: impacto vs esfuerzo, factibilidad vs valor)',ph:['idear','definir'],when:'Después del brainstorming para reducir de 100 ideas a 3-5 para prototipar',dur:'30-60 minutos',out:'Ideas priorizadas en 4 cuadrantes con selección clara',ex:'Ejes: Impacto para el usuario vs Factibilidad técnica. Cuadrante "alto impacto / alta factibilidad" = ganadoras',book:'Design Thinking Toolbox (2020) — pág. 155'},
+{id:28,name:'Dot Voting',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🟢',obj:'Priorizar colectivamente ideas o insights de forma rápida y visual, sin debate verbal',ph:['idear','definir'],when:'Cuando hay demasiadas opciones y se necesita converger rápido',dur:'15-20 minutos',out:'Ranking de ideas por preferencia del grupo',ex:'Cada participante tiene 3-5 puntos adhesivos. Puede acumular todos en una sola idea favorita',book:'Design Thinking Toolbox (2020) — pág. 159'},
+{id:29,name:'Prototype to Test',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🖥',obj:'Construir el prototipo más simple posible para aprender, desde papel hasta digital',ph:['prototipar'],when:'Después de la ideación, antes de testear con usuarios',dur:'2 horas (papel) · 2 días (digital)',out:'Prototipo con fidelidad apropiada para el aprendizaje buscado',ex:'Tipos: CEP · Dark Horse (lo más loco) · Funky · Vision · X is Finished · Final Prototype',book:'Design Thinking Toolbox (2020) — pág. 199; Design Thinking Playbook — cap. macrociclo'},
+{id:30,name:'Service Blueprint',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📐',obj:'Mapear el servicio completo: frontstage (visible al cliente) y backstage (invisible)',ph:['prototipar','ejecucion'],when:'Para diseñar o mejorar servicios complejos con múltiples actores y sistemas',dur:'4-6 horas',out:'Blueprint visual con líneas de interacción, visibilidad e implementación',ex:'Una clínica mapea: desde la cita online (cliente) hasta los sistemas internos que hacen posible la consulta',book:'Design Thinking Toolbox (2020) — pág. 203; Design Thinking Playbook — pág. 134'},
+{id:31,name:'Feedback Capture Grid',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📊',obj:'Estructurar el feedback de usuarios en 4 cuadrantes: gusta, mejorar, preguntas, nuevas ideas',ph:['testear'],when:'Inmediatamente después de cada sesión de prueba con usuarios',dur:'30-60 min post-prueba',out:'Grid de feedback estructurado para priorizar iteraciones',ex:'Los 5 usuarios del sprint generaron feedback capturado en tiempo real en 4 cuadrantes precisos',book:'Design Thinking Toolbox (2020) — pág. 217'},
+{id:32,name:'"I Like / I Wish / I Wonder"',author:'Lewrick / Stanford d.school',ak:'lewrick',icon:'💬',obj:'Dar feedback constructivo sobre prototipos usando lenguaje que no bloquea la creatividad',ph:['testear','idear'],when:'Para dar feedback a prototipos o presentaciones en ambiente psicológicamente seguro',dur:'15-30 minutos',out:'Feedback positivo y constructivo sin crítica destructiva',ex:'"Me gusta que sea simple. Desearía que se pudiera editar. Me pregunto si funciona offline."',book:'Design Thinking Toolbox (2020) — pág. 239'},
+{id:33,name:'Testing Sheet',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📋',obj:'Protocolo estructurado para planificar y ejecutar sesiones de prueba con usuarios',ph:['testear'],when:'Antes de cualquier sesión formal de prueba con usuarios reales',dur:'30 min preparación + tiempo de prueba',out:'Guía de prueba con preguntas, métricas y observaciones',ex:'Define: qué probar · con quién · cómo medir éxito · qué observar durante la prueba',book:'Design Thinking Toolbox (2020) — pág. 213'},
+{id:34,name:'Solution Interview',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🎙',obj:'Validar una solución específica con usuarios para identificar ajustes antes de construir',ph:['testear'],when:'Cuando tienes un prototipo maduro para validar antes de invertir en desarrollo',dur:'45-60 min por entrevista',out:'Validación cualitativa con insights de mejora específicos',ex:'Diferente de la entrevista de empatía: aquí se presenta la solución y se observa la reacción real',book:'Design Thinking Toolbox (2020) — pág. 225'},
+{id:35,name:'MVP — Minimum Viable Product',author:'Lewrick / Ries / Osterwalder',ak:'lewrick',icon:'🚀',obj:'Lanzar la versión más simple del producto que genere aprendizaje real del mercado',ph:['testear','ejecucion'],when:'Cuando tienes suficiente aprendizaje de prototipos para ir a mercado con mínima inversión',dur:'2-8 semanas típicamente',out:'Producto funcional mínimo en el mercado con métricas de aprendizaje',ex:'Dropbox usó un video de 3 min como MVP antes de construir nada — 75,000 registros en una noche',book:'Design Thinking Toolbox (2020) — pág. 207; Design Thinking for Business Growth — pág. 201'},
+{id:36,name:'Lean Canvas',author:'Ash Maurya / adoptado por Lewrick',ak:'lewrick',icon:'📄',obj:'Versión ligera del BMC para startups: problema, solución, métricas clave, ventaja injusta',ph:['estrategia','ejecucion'],when:'Para startups en etapa temprana que necesitan simplificar el modelo de negocio',dur:'1-2 horas',out:'Lienzo de negocio de una página orientado a early-stage',ex:'"Problema: freelancers no llevan contabilidad. Solución: foto-a-factura. Canal: Instagram. Ventaja: OCR propietario"',book:'Design Thinking Toolbox (2020) — pág. 251; Design Thinking for Business Growth — pág. 202'},
+{id:37,name:'Stakeholder Map',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🕸',obj:'Identificar todos los actores del ecosistema y sus relaciones de poder e influencia',ph:['empatizar','definir'],when:'Al inicio de proyectos complejos con múltiples partes interesadas',dur:'1-2 horas',out:'Mapa visual de stakeholders con nivel de influencia e interés',ex:'Un proyecto de salud pública mapea: pacientes, médicos, aseguradoras, reguladores y ONGs antes de diseñar',book:'Design Thinking Toolbox (2020) — pág. 83'},
+{id:38,name:'Jobs to Be Done (JTBD)',author:'Christensen / Lewrick / Osterwalder',ak:'lewrick',icon:'🔨',obj:'Entender qué "trabajo" contrata el cliente al usar un producto: la motivación real detrás de la compra',ph:['empatizar','definir'],when:'Cuando la propuesta de valor no conecta con lo que el cliente realmente valora',dur:'2-3 horas de taller',out:'Job statements: "Cuando [situación], quiero [motivación] para [resultado]"',ex:'"Cuando me quedo atascado en tráfico, quiero sentirme productivo para no desperdiciar mi tiempo"',book:'Design Thinking Toolbox (2020) — pág. 75; How to Create Innovation — pág. 105'},
+{id:39,name:'Ask 5x Why',author:'Lewrick / Link / Leifer (orig. Toyota)',ak:'lewrick',icon:'❓',obj:'Identificar la causa raíz de un problema profundizando con la pregunta "¿por qué?"',ph:['empatizar','definir'],when:'Cuando hay un problema recurrente cuya causa real no está clara',dur:'20-30 minutos',out:'Causa raíz identificada (nivel 5 del problema)',ex:'¿Por qué no compran? No confían → No hay reviews → No los pedimos → No hay proceso. Causa raíz: proceso post-venta inexistente',book:'Design Thinking Toolbox (2020) — pág. 67'},
+{id:40,name:'Exploration Map',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🧭',obj:'Documentar la evolución de prototipos capturando aprendizajes iterativos del equipo',ph:['prototipar','testear'],when:'En proyectos con múltiples iteraciones para mantener memoria colectiva del equipo',dur:'Continuo durante el proyecto',out:'Registro visual de prototipos y aprendizajes acumulados',ex:'El equipo fotografia cada prototipo, anota qué aprendió, y lo ubica en el mapa de exploración cronológico',book:'Design Thinking Toolbox (2020) — pág. 187; Design Thinking for Business Growth — pág. 197'},
+{id:41,name:'Critical Items Diagram',author:'Lewrick / Design Thinking for Business Growth',ak:'lewrick',icon:'📌',obj:'Identificar funciones y experiencias más críticas para el usuario como backlog del MVP',ph:['definir','prototipar'],when:'Para definir el alcance mínimo del prototipo o MVP',dur:'1-2 horas',out:'Lista priorizada de funciones/experiencias críticas para el usuario',ex:'De 30 funciones posibles, el equipo identifica las 5 absolutamente esenciales para la propuesta mínima',book:'Design Thinking for Business Growth (2022) — pág. 195'},
+{id:42,name:'NABC Framework',author:'SRI International / adoptado por Lewrick',ak:'lewrick',icon:'🎯',obj:'Estructurar una propuesta de innovación: Need, Approach, Benefit, Competition',ph:['idear','estrategia'],when:'Para presentar ideas de innovación a stakeholders o inversores de forma estructurada',dur:'30-60 minutos',out:'Pitch de innovación de una página con 4 elementos claros',ex:'N: Médicos pierden 2h/día. A: IA de transcripción. B: +2h de atención. C: Dragon Medical (3x más caro)',book:'Design Thinking Toolbox (2020) — pág. 177'},
+{id:43,name:'Blue Ocean / Buyer Utility Map',author:'Kim & Mauborgne / adaptado por Lewrick',ak:'lewrick',icon:'🌊',obj:'Identificar espacios de mercado sin competencia redefiniendo los factores de valor para el cliente',ph:['idear','estrategia'],when:'Cuando el mercado está saturado y se necesita crear nueva demanda',dur:'3-4 horas',out:'Curva de valor diferenciada vs competencia + océano azul identificado',ex:'Cirque du Soleil eliminó animales y estrellas, creó narrativa sofisticada: nuevo mercado sin competidores directos',book:'Design Thinking Toolbox (2020) — pág. 181'},
+{id:44,name:'Trend Analysis',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📈',obj:'Identificar tendencias macro (tech, social, económica, regulatoria) que impactan el problema',ph:['empatizar','estrategia'],when:'Al inicio del proyecto para contextualizar el problema en tendencias del mercado',dur:'2-4 horas',out:'Mapa de tendencias relevantes con implicaciones para el proyecto',ex:'Un equipo de retail mapea: IA generativa · economía circular · demografía aging · regulación de datos',book:'Design Thinking Toolbox (2020) — pág. 119'},
+{id:45,name:'Retrospective Sailboat',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'⛵',obj:'Reflexionar sobre el proceso del equipo: qué nos impulsa, qué nos frena, a dónde vamos',ph:['ejecucion'],when:'Al final de cada sprint o fase para mejorar la forma de trabajo del equipo',dur:'45-60 minutos',out:'Lista de mejoras al proceso del equipo + compromisos concretos',ex:'Viento: "Tenemos metodología clara." Ancla: "Reuniones sin agenda nos frenan." Roca: "Cliente cambia requisitos cada semana."',book:'Design Thinking Toolbox (2020) — pág. 243'},
+{id:46,name:'Innovation Funnel',author:'Lewrick / Osterwalder',ak:'lewrick',icon:'🔻',obj:'Gestionar el portafolio de innovación desde ideas hasta escala con gates de inversión incremental',ph:['estrategia','ejecucion'],when:'Para organizaciones que gestionan múltiples proyectos de innovación simultáneamente',dur:'Proceso continuo de gestión',out:'Embudo de innovación con proyectos en cada etapa y criterios de avance',ex:'Ideate → Discovery → Validate → Accelerate → Scale. Solo las mejores ideas avanzan con más inversión',book:'Design Thinking Toolbox (2020) — pág. 263; The Invincible Company (2020) — cap. 2'},
+{id:47,name:'Road Map for Implementation',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🗺',obj:'Planificar la implementación de la solución con hitos, recursos y responsables claros',ph:['ejecucion'],when:'Al pasar de la validación a la ejecución del proyecto',dur:'2-3 horas',out:'Hoja de ruta con fases, hitos, recursos y timeline',ex:'De la validación al lanzamiento: Fase 1 (MVP, 8 sem) · Fase 2 (beta, 12 sem) · Fase 3 (escala, 6 meses)',book:'Design Thinking Toolbox (2020) — pág. 259'},
+{id:48,name:'Create a Pitch',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🎤',obj:'Construir y presentar el pitch de innovación para conseguir inversión, aprobación o apoyo',ph:['ejecucion','estrategia'],when:'Cuando se necesita conseguir aprobación interna o inversión externa',dur:'2-4 horas de preparación',out:'Pitch de 5-10 min con problema, solución, evidencia y ask',ex:'Hook → Problema → Insight → Solución → Evidencia → Modelo → Equipo → Ask',book:'Design Thinking Toolbox (2020) — pág. 247'},
+{id:49,name:'Ecosystem Design Canvas',author:'Lewrick / Design Thinking for Business Growth',ak:'lewrick',icon:'🌐',obj:'Diseñar el ecosistema de actores y flujos de valor para soluciones multi-organización',ph:['estrategia','ejecucion'],when:'Para soluciones que requieren colaboración entre múltiples organizaciones',dur:'1-2 días',out:'Mapa del ecosistema con actores, flujos de valor y roles definidos',ex:'Una plataforma de salud mapea: pacientes · médicos · laboratorios · aseguradoras y sus flujos de valor mutuos',book:'Design Thinking for Business Growth (2022) — pág. 247-265'},
+{id:50,name:'Design Thinking Canvas',author:'Lewrick / Design Thinking for Business Growth',ak:'lewrick',icon:'🎨',obj:'Marco integrador que documenta todo el proceso DT desde research hasta MVP en un solo lienzo',ph:['empatizar','definir','idear','prototipar','testear'],when:'Para proyectos DT completos que necesitan documentación y trazabilidad',dur:'Continuo durante el proyecto',out:'Registro estructurado de todo el proceso DT integrado',ex:'Integra: trends · problem statement · HMW · persona · critical items · brainstorming · prototipo · lean canvas · MVP',book:'Design Thinking for Business Growth (2022) — pág. 188-203'},
+{id:51,name:'Business Model Patterns',author:'Osterwalder / Pigneur',ak:'osterwalder',icon:'🧩',obj:'Aplicar patrones probados de modelos de negocio para inventar nuevos o mejorar los existentes',ph:['idear','estrategia'],when:'Para reinventar modelos de negocio usando inspiración de otros sectores',dur:'Taller de 1-2 días',out:'Nuevo diseño de modelo de negocio basado en patrón seleccionado',ex:'Patrón "Plataforma multilateral": Airbnb aplica el patrón de eBay a alojamiento. Patrón "Freemium": Dropbox',book:'The Invincible Company (2020) — pág. 130-285; Business Model Generation (2009)'},
+{id:52,name:'Emotional Response Cards',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🃏',obj:'Usar imágenes para elicitar respuestas emocionales y comprender motivaciones profundas del usuario',ph:['empatizar'],when:'Cuando los usuarios no pueden o no quieren articular sus emociones verbalmente',dur:'30-45 min por sesión',out:'Insights sobre emociones y motivaciones no verbalizadas',ex:'Mostrar imágenes a empleados sobre su trabajo revela frustración que nunca dirían directamente a un investigador',book:'Design Thinking Toolbox (2020) — pág. 87'},
+{id:53,name:'AEIOU Framework',author:'Lewrick / Link / Leifer (orig. Doblin)',ak:'lewrick',icon:'👁',obj:'Estructura de observación etnográfica: Activities, Environments, Interactions, Objects, Users',ph:['empatizar'],when:'Durante investigación etnográfica en el contexto real del usuario',dur:'Durante la observación de campo',out:'Notas estructuradas de observación con 5 categorías sistemáticas',ex:'Hospital: A=flujo de trabajo · E=sala caótica · I=enfermera-paciente · O=equipos obsoletos · U=familiares ansiosos',book:'Design Thinking Toolbox (2020) — pág. 107'},
+{id:54,name:'Context Mapping',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🗺',obj:'Mapear el contexto completo del usuario: vida, trabajo y entorno para insights sistémicos',ph:['empatizar','definir'],when:'Cuando el problema está embebido en un sistema complejo de vida del usuario',dur:'2-3 horas',out:'Mapa visual del contexto del usuario con relaciones e influencias sistémicas',ex:'Para usuario de app de fitness: trabajo · familia · gym · amigos · salud — todos influyen en el uso',book:'Design Thinking Toolbox (2020) — pág. 133'},
+{id:55,name:'Analogies & Benchmarking',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🔀',obj:'Buscar inspiración en industrias diferentes para generar soluciones innovadoras por analogía',ph:['idear'],when:'Cuando el equipo está atascado en soluciones convencionales del propio sector',dur:'1-2 horas',out:'Set de analogías transferibles para inspirar soluciones radicalmente nuevas',ex:'"¿Cómo lo haría un hotel de lujo?" "¿Cómo lo haría Amazon?" "¿Cómo lo haría Disney?" — aplicado al problema de salud',book:'Design Thinking Toolbox (2020) — pág. 171'},
+{id:56,name:'Innovation Scorecard (IPS)',author:'Osterwalder / Strategyzer',ak:'osterwalder',icon:'🏆',obj:'Evaluar y comparar proyectos de innovación según criterios estratégicos para decidir en cuáles invertir',ph:['estrategia'],when:'Para líderes de innovación que gestionan múltiples proyectos simultáneos',dur:'2-3 horas por portfolio review',out:'Ranking de proyectos con criterios de inversión claros y comparables',ex:'Criterios: evidencia de mercado · tamaño de oportunidad · fit estratégico · velocidad de aprendizaje',book:'The Invincible Company (2020) — pág. 88-105'},
+{id:57,name:'Extreme Users / Lead Users',author:'Lewrick / von Hippel',ak:'lewrick',icon:'⭐',obj:'Estudiar usuarios extremos para descubrir necesidades futuras que el usuario promedio no revela',ph:['empatizar'],when:'Cuando la investigación convencional no genera insights suficientemente diferenciados',dur:'1-2 días de investigación',out:'Insights radicales que inspiran innovaciones para el futuro',ex:'Los usuarios extremos del GPS (pilotos de rally, exploradores) revelan necesidades que eventualmente usa el promedio',book:'Design Thinking Toolbox (2020) — pág. 79'},
+{id:58,name:'Peers Observing Peers',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'👥',obj:'Los propios usuarios se observan entre sí generando insights más auténticos que con un investigador externo',ph:['empatizar'],when:'Cuando la presencia del investigador podría alterar el comportamiento natural',dur:'2-3 horas',out:'Video/notas de observación entre pares con insights auténticos',ex:'Dos empleados de hospital se observan durante su turno y descubren ineficiencias que nunca reportarían a su jefe',book:'Design Thinking Toolbox (2020) — pág. 115'},
+{id:59,name:'Vision Cone',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🔭',obj:'Visualizar futuros posibles a 1, 3 y 5 años para orientar la dirección de innovación',ph:['definir','estrategia'],when:'Para proyectos estratégicos que necesitan anclar el presente en una visión de futuro',dur:'2-3 horas',out:'Cono de visión con futuros posibles, probables y preferibles',ex:'Para educación: posible (AR en aulas) · probable (IA como tutor) · preferible (aprendizaje personalizado universal)',book:'Design Thinking Toolbox (2020) — pág. 141'},
+{id:60,name:'A/B Testing',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'⚖',obj:'Comparar dos versiones de una solución con usuarios reales para determinar cuál performa mejor',ph:['testear'],when:'Cuando tienes tráfico suficiente y necesitas evidencia cuantitativa de qué funciona',dur:'1-4 semanas de recolección de datos',out:'Evidencia cuantitativa de qué versión funciona mejor',ex:'Dos versiones del botón "comprar": rojo vs verde. La versión verde aumenta conversión 12%',book:'Design Thinking Toolbox (2020) — pág. 233'},
+{id:61,name:'Storytelling para Modelos de Negocio',author:'Osterwalder / Pigneur',ak:'osterwalder',icon:'📚',obj:'Narrar el modelo de negocio como historia para hacerlo comprensible y memorable',ph:['estrategia','ejecucion'],when:'Para comunicar el modelo de negocio a inversores, empleados o clientes no técnicos',dur:'2-3 horas de preparación',out:'Historia del modelo de negocio con protagonista cliente y propuesta de valor',ex:'"Juan es un pequeño agricultor que... [problema]. Con nuestra app... [solución]. Ahora Juan puede... [resultado]"',book:'Business Model Generation (2009) — pág. 170-179'},
+{id:62,name:'Scenarios (Escenarios de Negocio)',author:'Osterwalder / Pigneur',ak:'osterwalder',icon:'🎭',obj:'Explorar futuros posibles del entorno para diseñar modelos de negocio más resilientes',ph:['estrategia'],when:'Para planificación estratégica en entornos de alta incertidumbre',dur:'1-2 días de taller',out:'2-4 escenarios de futuro con modelos de negocio adaptados a cada uno',ex:'Escenario A: regulación estricta de datos. Escenario B: privacidad como diferenciador. Para cada uno: ¿qué BMC?',book:'Business Model Generation (2009) — pág. 180-203'},
+{id:63,name:'Design Principles',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📏',obj:'Definir los principios que guiarán todas las decisiones de diseño del proyecto',ph:['definir'],when:'Al inicio del proyecto para alinear criterios de diseño en todo el equipo',dur:'1-2 horas',out:'5-7 principios de diseño que actúan como criterios de decisión compartidos',ex:'"Simple antes que completo." "El error es parte del journey." "Visible para todos los usuarios."',book:'Design Thinking Toolbox (2020) — pág. 53'},
+{id:64,name:'Structured Usability Testing',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'🔬',obj:'Protocolo formal de prueba con tareas definidas, métricas y usuarios representativos',ph:['testear'],when:'Para productos digitales o físicos en etapas avanzadas de desarrollo',dur:'1-2 horas por sesión + análisis',out:'Reporte de usabilidad con tasas de éxito, tiempos y pain points',ex:'5 usuarios intentan completar 3 tareas específicas mientras el equipo observa sin intervenir',book:'Design Thinking Toolbox (2020) — pág. 229'},
+{id:65,name:'Lessons Learned',author:'Lewrick / Link / Leifer',ak:'lewrick',icon:'📖',obj:'Capturar aprendizajes del proyecto para mejorar futuros proyectos y construir capacidad organizacional',ph:['ejecucion'],when:'Al cierre de cada proyecto o fase importante del proceso',dur:'1-2 horas',out:'Documento de lecciones aprendidas con mejoras para el siguiente ciclo',ex:'¿Qué hicimos bien? ¿Qué haríamos diferente? ¿Qué le dirías a otro equipo que empieza?',book:'Design Thinking Toolbox (2020) — pág. 255'}// Make Time tools
+,{id:66,name:'Sistema Make Time (4 pasos)',author:'Knapp / Zeratsky',ak:'knapp',icon:'⏱',obj:'Framework diario de productividad: Highlight → Laser → Energize → Reflect para equipos de innovación',ph:['ejecucion'],when:'Para equipos de innovación que necesitan proteger tiempo de trabajo profundo en sprints largos',dur:'Rutina diaria de 5-10 min · revisión semanal 30 min',out:'Día diseñado intencionalmente con tiempo protegido para la prioridad más importante',ex:'Un equipo de diseño aplica Make Time durante un proyecto de 3 meses: cada miembro elige su "Highlight" diario antes de revisar emails o Slack',book:'Make Time (2018) — introducción y cap. 1-4'}
+,{id:67,name:'Highlight — La Prioridad del Día',author:'Knapp / Zeratsky',ak:'knapp',icon:'⭐',obj:'Elegir UNA sola actividad prioritaria para proteger y completar cada día — el "plato fuerte"',ph:['ejecucion'],when:'Al inicio de cada jornada de trabajo, antes de abrir email o calendario',dur:'5 minutos al inicio del día',out:'Una actividad protegida en la agenda con tiempo bloqueado',ex:'Un product manager elige como Highlight "terminar el prototipo del flujo de onboarding" en lugar de reaccionar a 40 emails',book:'Make Time (2018) — cap. Highlight, pág. 27-65'}
+,{id:68,name:'Modo Láser (87 tácticas anti-distracción)',author:'Knapp / Zeratsky',ak:'knapp',icon:'🔆',obj:'Conjunto de tácticas para bloquear distracciones digitales y entrar en estado de foco profundo',ph:['ejecucion'],when:'Cuando el equipo necesita tiempo ininterrumpido para trabajo creativo o de alta complejidad',dur:'Bloques de 60-90 min (con Time Timer visual)',out:'Estado de foco profundo en la Prioridad del día',ex:'Desinstalar redes sociales del móvil · silenciar todas las notificaciones · usar Time Timer visible · configurar autorespondedor de email',book:'Make Time (2018) — cap. Láser, tácticas 21-65'}
+,{id:69,name:'Energize — Recarga para el cerebro',author:'Knapp / Zeratsky',ak:'knapp',icon:'⚡',obj:'Gestionar la energía física para sostener el foco mental durante el día: ejercicio, sueño, alimentación',ph:['ejecucion'],when:'Para equipos en sprints o proyectos intensos que necesitan sostener el rendimiento cognitivo',dur:'Hábitos diarios (15-30 min ejercicio · 7-9h sueño)',out:'Energía mental sostenida para el trabajo creativo de alta demanda',ex:'Durante un Design Sprint de 5 días: caminar entre sesiones, no saltarse el almuerzo, dormir 8h',book:'Make Time (2018) — cap. Energize, tácticas 66-80'}
+,{id:70,name:'Daily Reflect — Cierre diario',author:'Knapp / Zeratsky',ak:'knapp',icon:'📓',obj:'Reflexión estructurada de 5 minutos al final del día para medir progreso y ajustar el sistema',ph:['ejecucion'],when:'Al final de cada jornada para cerrar el ciclo y preparar el día siguiente',dur:'5-10 minutos al final del día',out:'Notas sobre: ¿completé mi Highlight? ¿qué energía tuve? ¿qué táctica probaré mañana?',book:'Make Time (2018) — cap. Reflect, pág. 245-265',ex:'El equipo lleva un diario semanal que revela que los lunes son más productivos que los viernes → redistribuyen trabajo creativo'}
+
+,{id:71,name:'Ten Types of Innovation Framework',author:'Keeley / Walters / Pikkel / Quinn (Doblin)',ak:'doblin',icon:'🔟',obj:'Diagnosticar y diseñar innovaciones en 10 dimensiones: desde modelo de negocio hasta experiencia del cliente',ph:['idear','estrategia'],when:'Cuando la empresa innova solo en producto y necesita construir innovaciones más defensibles y complejas',dur:'Taller de 1-2 días para análisis · ongoing para estrategia',out:'Mapa de innovación actual + identificación de dimensiones no explotadas',ex:'Zipcar combina 7 tipos: Profit Model (por hora) + Network (flota compartida) + Process (reserva digital) + Channel (ubicación urbana). Si quitas 2, es solo un rent-a-car normal',book:'Ten Types of Innovation (2013) — cap. 2, The Ten Types'}
+,{id:72,name:'Profit Model Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'💰',obj:'Rediseñar cómo la empresa convierte su valor en ingresos: nuevos modelos de precios y monetización',ph:['idear','estrategia'],when:'Cuando el modelo de ingresos actual no captura suficiente valor o es fácilmente replicable',dur:'2-4 horas de taller estratégico',out:'Canvas de modelos de monetización alternativos evaluados',ex:'Netflix pasó de renta por película (Blockbuster) a suscripción mensual. Adobe de licencia única a SaaS mensual. Ambos capturaron más valor y crearon lock-in',book:'Ten Types of Innovation (2013) — cap. 3, Profit Model'}
+,{id:73,name:'Network Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'🕸',obj:'Crear valor conectándose con otros para acceder a capacidades, canales o clientes que no se tienen internamente',ph:['idear','estrategia'],when:'Cuando la empresa necesita escalar sin construir todo internamente o acceder a ecosistemas complementarios',dur:'Taller de medio día',out:'Mapa de alianzas estratégicas y partnerships de valor',ex:'Apple conectó a fabricantes de hardware (OEMs), artistas y sellos discográficos para crear el ecosistema iPod+iTunes. Ninguna empresa sola podría haberlo replicado',book:'Ten Types of Innovation (2013) — cap. 4, Network'}
+,{id:74,name:'Structure Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'🏗',obj:'Reorganizar activos, capital humano y capacidades internas para crear ventajas competitivas difíciles de copiar',ph:['estrategia','ejecucion'],when:'Cuando la estructura organizacional o el modelo operativo es el obstáculo para la innovación',dur:'Proyecto de 1-3 meses',out:'Nuevo diseño organizacional o modelo de capacidades',ex:'Toyota estructuró su cultura de mejora continua (Kaizen) de forma que ningún competidor ha podido replicar consistentemente en 50 años',book:'Ten Types of Innovation (2013) — cap. 5, Structure'}
+,{id:75,name:'Process Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'⚙',obj:'Hacer procesos superiores que sean difíciles de ver y copiar — la ventaja más duradera y subestimada',ph:['estrategia','ejecucion'],when:'Cuando la eficiencia operativa o la calidad de entrega es el diferenciador clave del negocio',dur:'Proyecto de 2-6 meses',out:'Proceso rediseñado con ventaja competitiva documentada',ex:'McDonald\'s diseñó su sistema de cocina con tal precisión (tiempos, temperaturas, secuencias) que pudo escalar a 40,000 restaurantes manteniendo consistencia global',book:'Ten Types of Innovation (2013) — cap. 6, Process'}
+,{id:76,name:'Product Performance Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'📱',obj:'Innovar en las características, funciones y desempeño del producto central — el tipo más común y más copiable',ph:['idear','prototipar'],when:'Cuando el producto necesita mejoras funcionales para competir — pero siempre combinándolo con otros tipos',dur:'Ciclos de desarrollo iterativos',out:'Producto con características superiores claramente diferenciadas',ex:'Dyson innovó en rendimiento de aspiradoras (sin bolsa, más succión) pero lo combinó con diseño (Brand) y precio premium (Profit Model) para crear una posición defensible',book:'Ten Types of Innovation (2013) — cap. 7, Product Performance'}
+,{id:77,name:'Product System Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'🧩',obj:'Crear sistemas de productos complementarios que creen valor conjunto mayor que la suma de sus partes',ph:['idear','estrategia'],when:'Cuando el producto único no es suficiente y se puede crear un ecosistema de productos interconectados',dur:'Estrategia de 6-12 meses para diseñar el sistema',out:'Arquitectura de sistema de productos con integraciones definidas',ex:'Apple creó el ecosistema iPhone + iPad + Mac + Watch + AirPods + iCloud. Cada producto solo es bueno; todos juntos crean un lock-in casi imposible de abandonar',book:'Ten Types of Innovation (2013) — cap. 8, Product System'}
+,{id:78,name:'Service Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'🤝',obj:'Diseñar servicios que aumenten el valor del producto y creen experiencias superiores al cliente',ph:['idear','prototipar'],when:'Cuando el producto es commodity y el servicio puede ser el verdadero diferenciador',dur:'Sprints de diseño de servicio de 2-4 semanas',out:'Blueprint de servicio superior con propuesta de valor clara',ex:'Zappos no vendía zapatos sino la política de devolución gratis y atención al cliente legendaria. El producto era genérico; el servicio era imposible de ignorar',book:'Ten Types of Innovation (2013) — cap. 9, Service'}
+,{id:79,name:'Channel Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'📡',obj:'Crear nuevas formas de entregar la oferta al cliente — canales que cambien las reglas del juego del sector',ph:['idear','estrategia'],when:'Cuando los canales actuales son costosos, lentos o no llegan al segmento objetivo',dur:'Experimentos de 4-8 semanas por canal nuevo',out:'Canal alternativo validado con métricas de costo-adquisición',ex:'Netflix eliminó las tiendas físicas (Blockbuster) enviando DVDs por correo. Luego eliminó el correo con streaming. Dos veces cambió el canal y cada vez ganó',book:'Ten Types of Innovation (2013) — cap. 10, Channel'}
+,{id:80,name:'Brand Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'🏷',obj:'Crear identidad y significado que trasciende el producto y genera lealtad emocional en el cliente',ph:['idear','estrategia'],when:'Cuando el producto es paridad con la competencia y la percepción de marca puede ser el diferenciador',dur:'Proyecto de 3-6 meses para redefinir posicionamiento',out:'Plataforma de marca con promesa emocional diferenciada',ex:'Harley-Davidson vende libertad e identidad, no motocicletas. Sus clientes se tatúan el logo. Ningún competidor con mejor producto ha podido replicar esa lealtad',book:'Ten Types of Innovation (2013) — cap. 11, Brand'}
+,{id:81,name:'Customer Engagement Innovation',author:'Keeley / Doblin',ak:'doblin',icon:'💫',obj:'Crear interacciones que generen vínculos profundos y continuos entre el cliente y la empresa',ph:['idear','estrategia'],when:'Cuando la retención y el engagement del cliente son los drivers clave del negocio',dur:'Diseño de 4-8 semanas + implementación iterativa',out:'Sistema de engagement con métricas de retención y NPS definidas',ex:'Nike+/Nike Run Club transformó comprar zapatillas en pertenecer a una comunidad de corredores global. El engagement aumentó la frecuencia de compra y la lealtad',book:'Ten Types of Innovation (2013) — cap. 12, Customer Engagement'}
+,{id:82,name:'Innovation Tactics (100+ tácticas)',author:'Keeley / Doblin',ak:'doblin',icon:'🎯',obj:'Biblioteca de más de 100 tácticas genéricas y reutilizables organizadas por los 10 tipos para construir innovaciones complejas',ph:['idear','estrategia'],when:'Para combinar tácticas de múltiples tipos y construir innovaciones más sofisticadas y defensibles',dur:'Sesión de selección: 3-4 horas · implementación: variable',out:'Combinación de tácticas seleccionadas que forman una "Innovation Play" completa',ex:'Freemium (Profit Model) + Comunidad (Network) + Gamificación (Engagement) + API abierta (Product System) = Spotify. Cada táctica sola es mediocre; la combinación es el negocio',book:'Ten Types of Innovation (2013) — cap. 19, Innovation Tactics'}
+
+,{id:83,name:'Customer Profile Canvas (VPD)',author:'Osterwalder / Pigneur / Bernarda / Smith',ak:'osterwalder',icon:'👤',obj:'Mapear en profundidad los trabajos, dolores y ganancias del cliente con mayor rigor que el VPC básico',ph:['empatizar','definir'],when:'Cuando necesitas una comprensión más granular del cliente antes de diseñar tu propuesta de valor',dur:'2-3 horas con datos de investigación real',out:'Perfil detallado del cliente con jobs funcionales, sociales y emocionales + pains + gains priorizados',ex:'Un equipo mapea a su cliente "manager de RRHH": Job funcional (contratar talento), Job emocional (no cometer errores), Pain extremo (candidatos que no aparecen), Gain esencial (ahorrar 3 horas por proceso)',book:'Value Proposition Design (2014) — cap. 1, Customer Profile, pág. 10-25'}
+,{id:84,name:'Value Map Canvas (VPD)',author:'Osterwalder / Pigneur / Bernarda / Smith',ak:'osterwalder',icon:'💡',obj:'Describir explícitamente cómo productos y servicios crean valor mediante pain relievers y gain creators',ph:['definir','idear'],when:'Para hacer explícita la lógica de creación de valor antes de testear con clientes',dur:'2-3 horas después del Customer Profile',out:'Mapa de valor con productos/servicios + pain relievers + gain creators priorizados',ex:'"Nuestro software reduce el tiempo de screening de CVs de 3 horas a 15 minutos (pain reliever) y genera un ranking automático con score de fit (gain creator)"',book:'Value Proposition Design (2014) — cap. 1, Value Map, pág. 26-39'}
+,{id:85,name:'Problem-Solution Fit (VPD)',author:'Osterwalder / Pigneur / Bernarda / Smith',ak:'osterwalder',icon:'✅',obj:'Verificar que la propuesta de valor aborda realmente los jobs, pains y gains más importantes del cliente',ph:['testear'],when:'Antes de construir el producto: ¿realmente resolvemos lo que más le importa al cliente?',dur:'Taller de 2-3 horas + validación con clientes',out:'Confirmación de fit entre Value Map y Customer Profile con evidencia real',ex:'Un equipo descubre que su "pain reliever" más elaborado aborda un pain de importancia baja — reorientan el producto antes de construir nada',book:'Value Proposition Design (2014) — cap. 1, Fit, pág. 40-55'}
+,{id:86,name:'Product-Market Fit Testing (VPD)',author:'Osterwalder / Pigneur / Bernarda / Smith',ak:'osterwalder',icon:'🎯',obj:'Iterar la propuesta de valor con experimentos reales hasta lograr fit genuino con el mercado',ph:['testear','ejecucion'],when:'Cuando el MVP está en el mercado y se necesita validar que el fit es real y escalable',dur:'Ciclos de 2-4 semanas por iteración',out:'Métricas de fit: retención, NPS, disposición a pagar, recomendación orgánica',ex:'Airbnb sabía que tenía PMF cuando sus hosts empezaron a traer a otros hosts sin que Airbnb lo pidiera — el gain creator (ingresos extra) era lo suficientemente fuerte',book:'Value Proposition Design (2014) — cap. 2-3, Testing y Evolving'}
+,{id:87,name:'JTBD Customer Promise Canvas (UNITE)',author:'Dieffenbacher / Digital Leadership AG',ak:'unite',icon:'📋',obj:'Conectar el Job-to-Be-Done del cliente con la promesa central de la oferta y las capacidades del negocio',ph:['definir','estrategia'],when:'Para formular una propuesta de valor que sea simultáneamente relevante para el cliente y realizable por la empresa',dur:'2-3 horas de taller con equipo multidisciplinar',out:'Canvas con: necesidad del cliente · promesa de la oferta · prueba · capacidades del negocio · scoring',ex:'Startup de salud: Necesidad (monitoreo continuo sin fricción) · Promesa (análisis automático 24/7) · Prueba (algoritmo validado con 500 pacientes) · Capacidad (equipo ML + regulatorio)',book:'How to Create Innovation (2024) — cap. JTBD, pág. 105-120'}
+,{id:88,name:'Extended Business Model Canvas (UNITE)',author:'Dieffenbacher / Digital Leadership AG',ak:'unite',icon:'🗺',obj:'Versión ampliada del BMC que integra Drivers, Team, Operating Model, Experience Model y Unfair Advantage',ph:['estrategia'],when:'Cuando el BMC estándar es insuficiente y se necesita modelar el negocio con mayor profundidad sistémica',dur:'Medio día de taller · sesiones de refinamiento iterativas',out:'Modelo de negocio ampliado con 10+ dimensiones interconectadas',ex:'Una plataforma B2B mapea: Massive Transformative Purpose + Values & Culture + Jobs-to-be-Done + Operating Model + Revenue Model + Unfair Advantage — todo en un solo lienzo coherente',book:'How to Create Innovation (2024) — cap. Business Model, pág. 280-350'}
+,{id:89,name:'Business Model Environment Canvas (UNITE)',author:'Dieffenbacher / Digital Leadership AG',ak:'unite',icon:'🌍',obj:'Mapear el entorno del modelo de negocio: fuerzas del mercado, tendencias, industria y macroentorno',ph:['empatizar','estrategia'],when:'Para contextualizar el modelo de negocio actual en las fuerzas externas que lo afectarán',dur:'3-4 horas de análisis de entorno',out:'Mapa del entorno con amenazas y oportunidades priorizadas',ex:'Una empresa de retail mapea: tendencia e-commerce (fuerza del mercado) + regulación de datos GDPR (macro) + Amazon como disruptor (industria) → decide invertir en experiencia física diferenciada',book:'How to Create Innovation (2024) — pág. 320-335'}
+,{id:90,name:'Innovation Funnel & Metrics (UNITE)',author:'Dieffenbacher / Digital Leadership AG',ak:'unite',icon:'📊',obj:'Sistema de métricas para medir progreso real de innovación: de idea a negocio escalable con evidencia',ph:['estrategia','ejecucion'],when:'Para organizaciones que necesitan medir el ROI de la innovación y gestionar el portafolio con datos',dur:'Sistema continuo · revisión mensual 2-3 horas',out:'Dashboard de innovación con métricas de aprendizaje, reducción de riesgo y tracción de mercado',ex:'El equipo trackea: % hipótesis validadas · velocidad de ciclo de experimento · costo por aprendizaje · tasa de conversión de idea a proyecto validado. La tasa de éxito sube de 17% a 86%',book:'How to Create Innovation (2024) — cap. Metrics, pág. 214-230'}
+];
+
+const SY=[
+{id:'s1',n:'01',e:'👤',t:'"No tenemos claros quiénes son nuestros clientes ni qué quieren realmente"',d:'Problema de comprensión del usuario. Se necesita investigación profunda antes de diseñar cualquier solución.',c:'Entrevista de Empatía + Persona + Customer Journey',a:'Iniciar con investigación cualitativa (DT Toolbox) antes de cualquier ideación. Mínimo 5-8 entrevistas de empatía, luego sintetizar con Empathy Map y construir Personas. La investigación nunca es un lujo — es la única forma de no diseñar para ti mismo.',tools:[20,22,23,57,58,52,38,21,53,54]},
+{id:'s2',n:'02',e:'💔',t:'"Nuestro producto existe pero nadie lo usa o no genera valor percibido"',d:'Problema de propuesta de valor o product-market fit. Se necesita re-entender al cliente desde cero.',c:'Value Proposition Canvas + Assumptions Map + Solution Interview',a:'Mapear el VPC actual vs el VPC deseado (Osterwalder), identificar las hipótesis de deseabilidad más riesgosas, luego validarlas con entrevistas de solución reales.',tools:[2,5,23,38,20,34,33,31]},
+{id:'s3',n:'03',e:'🏗',t:'"Nuestro modelo de negocio no genera dinero o no es sostenible"',d:'Problema de viabilidad del modelo de negocio. Necesita rediseño estratégico desde los fundamentos.',c:'Business Model Canvas + Business Model Patterns + Scenarios',a:'Mapear el BMC actual con honestidad brutal → identificar el bloque roto → explorar patrones alternativos de otros sectores → validar el nuevo modelo con experimentos de bajo costo.',tools:[1,51,62,44,36,56,7,8]},
+{id:'s4',n:'04',e:'⚡',t:'"Necesitamos validar una idea rápido sin invertir demasiado"',d:'Validación rápida de hipótesis. Se necesita el experimento más eficiente posible.',c:'Design Sprint (5 días) + Test Card + Concierge / Fake Door',a:'Si el equipo puede bloquear 5 días: Design Sprint completo (Knapp). Si no: priorizar hipótesis con Assumptions Map y elegir el experimento de menor costo de la Experiment Library.',tools:[9,5,6,7,8,16,17,35]},
+{id:'s5',n:'05',e:'🤝',t:'"El equipo no está alineado y cada quien tira para su lado"',d:'Problema de alineación de equipo. Se necesita construir entendimiento compartido desde la base.',c:'Foundation Sprint + Sprint Map + Design Principles',a:'Foundation Sprint de 2 días (Knapp/Click) para construir base común: ¿qué problema resolvemos? ¿para quién? ¿cuál es nuestro diferenciador? Sin eso, cualquier metodología dispersa los recursos.',tools:[10,11,27,28,18,63,45]},
+{id:'s6',n:'06',e:'🌊',t:'"Tenemos competencia feroz y no sabemos cómo diferenciarnos"',d:'Problema de diferenciación estratégica. Se necesita re-definir el espacio competitivo.',c:'Blue Ocean + Business Model Patterns + Value Proposition Canvas',a:'Blue Ocean (Lewrick/Toolbox) para mapear la curva de valor actual vs la competencia → explorar patrones de innovación (Osterwalder) → rediseñar la propuesta de valor desde insights del cliente.',tools:[43,51,1,2,62,42,44]},
+{id:'s7',n:'07',e:'🏢',t:'"Somos una empresa grande y la innovación no fluye: demasiada burocracia"',d:'Problema de cultura y gestión del portafolio de innovación. Necesita transformación organizacional.',c:'Culture Map + Portfolio Map + Innovation Funnel',a:'Diagnóstico cultural con Culture Map (Osterwalder) para identificar bloqueadores → Portfolio Map para priorizar apuestas → Innovation Funnel para gestionar múltiples proyectos con criterios claros.',tools:[4,3,46,56,41,65,45]},
+{id:'s8',n:'08',e:'🛠',t:'"Tenemos la solución técnica pero no sabemos cómo llevarla al mercado"',d:'Problema de go-to-market y canales. Se necesita diseñar la experiencia de adopción del cliente.',c:'Customer Journey + Value Proposition Canvas + Lean Canvas + Pitch',a:'Mapear el journey de adopción (Lewrick) → diseñar el modelo de monetización y canales (VPC + Lean Canvas) → construir el pitch para conseguir apoyo interno y externo.',tools:[23,2,1,36,35,61,48]},
+{id:'s9',n:'09',e:'🔮',t:'"No sé qué problema resolver primero: hay demasiadas oportunidades"',d:'Problema de foco y priorización estratégica. Se necesita definir el reto correcto antes de cualquier ideación.',c:'Foundation Sprint + Problem Statement + HMW + 2x2 Matrix',a:'Foundation Sprint de 2 días (Knapp) o taller de Problem Statement (Lewrick) para elegir el reto con mayor potencial. Sin foco, cualquier metodología dispersa los recursos del equipo.',tools:[10,19,24,27,28,5,11]},
+{id:'s10',n:'10',e:'📊',t:'"Estamos prototipando pero no aprendemos lo suficiente de los usuarios"',d:'Problema de calidad del aprendizaje. Se necesita mejorar la metodología de testing y síntesis.',c:'Five-Act Interview + Feedback Grid + Testing Sheet + A/B Test',a:'Adoptar el protocolo Five-Act Interview (Knapp) para entrevistas ricas. Complementar con Feedback Capture Grid (Lewrick). Añadir A/B Testing para evidencia cuantitativa.',tools:[17,31,33,34,60,32,40,64]},{id:'s11',n:'11',e:'🎯',t:'"Innovamos siempre en producto pero la competencia nos copia en meses"',d:'Problema de sostenibilidad de la innovación. La innovación de producto sola es la más visible y la más fácil de copiar. Se necesita innovar en múltiples dimensiones simultáneamente.',c:'Ten Types of Innovation + Business Model Patterns + Innovation Tactics',a:'Usar el framework de 10 Tipos (Doblin) para auditar en cuántas dimensiones innova la empresa actualmente. Las empresas más disruptivas combinan 5-7 tipos. Luego diseñar innovaciones en las dimensiones menos explotadas: Profit Model, Network, Process o Customer Engagement.',tools:[71,72,73,74,75,77,78,79,80,81,82]}
+,{id:'s12',n:'12',e:'⏰',t:'"Nuestro equipo de innovación está agotado y no puede mantener el ritmo"',d:'Problema de productividad y sostenibilidad del equipo. La innovación requiere foco profundo que el modo reactivo destruye sistemáticamente.',c:'Make Time System + Design Sprint + Retrospective Sailboat',a:'Aplicar Make Time (Knapp) como sistema diario del equipo: cada miembro elige su Highlight diario antes de abrir email o Slack. Bloquear bloques de Modo Láser de 90 min. Usar el Retrospective Sailboat mensualmente para ajustar el sistema.',tools:[66,67,68,69,70,45,17,9]}
+];
+
+let aPhase='all',aAuth='all',aSearch='';
+
+function gtool(id){return T.find(t=>t.id===id);}
+
+function showP(id,btn){
+  document.querySelectorAll('.vpanel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  if(btn)btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderBadges(phases){
+  return phases.map(p=>{const ph=PH[p];return `<span class="pb" style="color:${ph.color};border-color:${ph.bd};background:${ph.bg}">${ph.label.toUpperCase()}</span>`;}).join('');
+}
+
+function renderCard(tool){
+  return `<div class="tc" id="tc-${tool.id}" onclick="tgl(${tool.id})" data-ph="${tool.ph.join(',')}" data-ak="${tool.ak}" data-nm="${tool.name.toLowerCase()} ${tool.obj.toLowerCase()}">
+    <div class="ttop">
+      <div class="tico">${tool.icon}</div>
+      <div class="tmeta">
+        <div class="tname">${tool.name}</div>
+        <div class="tauth">${tool.author}</div>
+        <div class="tobj">${tool.obj}</div>
+      </div>
+      <div class="texp">▾</div>
+    </div>
+    <div class="tdet">
+      <div class="drows">
+        <div class="dr"><span class="dl">Cuándo</span><span class="dv">${tool.when}</span></div>
+        <div class="dr"><span class="dl">Duración</span><span class="dv">${tool.dur}</span></div>
+        <div class="dr"><span class="dl">Output</span><span class="dv">${tool.out}</span></div>
+        <div class="dr"><span class="dl">Ejemplo</span><span class="dv">${tool.ex}</span></div>
+      </div>
+      <div class="pbadges">${renderBadges(tool.ph)}</div>
+      <div class="bref">📖 ${tool.book}</div>
+    </div>
+  </div>`;
+}
+
+function tgl(id){document.getElementById('tc-'+id).classList.toggle('exp');}
+
+function renderTools(){
+  const c=document.getElementById('tools-container');
+  let h='';
+  Object.entries(PH).forEach(([key,ph])=>{
+    const tools=T.filter(t=>t.ph.includes(key));
+    h+=`<div class="pg" data-ph="${key}">
+      <div class="ph"><div class="pdot" style="background:${ph.color}"></div><span class="pname">${ph.label}</span><span class="pcnt">${tools.length} herramientas</span></div>
+      <div class="tgrid">${tools.map(renderCard).join('')}</div>
+    </div>`;
+  });
+  c.innerHTML=h;
+}
+
+function renderSymptoms(){
+  const c=document.getElementById('symptoms-container');
+  c.innerHTML=SY.map(s=>{
+    const pills=s.tools.map(id=>{
+      const t=gtool(id);if(!t)return'';
+      const ph=PH[t.ph[0]];
+      return `<button class="tp" onclick="focusTool(${id});event.stopPropagation()"><span class="tpdot" style="background:${ph.color}"></span>${t.name}</button>`;
+    }).join('');
+    return `<div class="si" id="${s.id}">
+      <div class="sh" onclick="tgls('${s.id}')">
+        <span class="snum">${s.n}</span>
+        <span class="sem">${s.e}</span>
+        <span class="stitle">${s.t}</span>
+        <span class="schev">▶</span>
+      </div>
+      <div class="sbody">
+        <p class="sdesc">${s.d}</p>
+        <div class="scombo"><div class="sck">Combo recomendado</div><div class="sct">${s.c}</div></div>
+        <div class="sapr">${s.a}</div>
+        <div class="tpills">${pills}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function tgls(id){document.getElementById(id).classList.toggle('open');}
+
+function focusTool(id){
+  showP('herramientas');
+  document.querySelectorAll('.nb')[0].classList.add('on');
+  aPhase='all';applyF();
+  setTimeout(()=>{
+    const card=document.getElementById('tc-'+id);
+    if(card){card.scrollIntoView({behavior:'smooth',block:'center'});card.classList.add('exp');}
+  },300);
+}
+
+function fPhase(p,btn){
+  aPhase=p;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  applyF();
+}
+
+function fAuth(a,btn){
+  aAuth=a;
+  document.querySelectorAll('.chip').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  applyF();
+}
+
+function sTools(q){aSearch=q.toLowerCase();applyF();}
+
+function applyF(){
+  document.querySelectorAll('.pg').forEach(g=>{
+    const ph=g.dataset.ph;
+    const show=aPhase==='all'||ph===aPhase;
+    g.style.display=show?'block':'none';
+    let cnt=0;
+    g.querySelectorAll('.tc').forEach(card=>{
+      const am=aAuth==='all'||card.dataset.ak===aAuth;
+      const sm=!aSearch||card.dataset.nm.includes(aSearch);
+      card.style.display=(am&&sm)?'block':'none';
+      if(am&&sm)cnt++;
+    });
+    const el=g.querySelector('.pcnt');
+    if(el)el.textContent=cnt+(cnt===1?' herramienta':' herramientas');
+  });
+}
+
+function renderFw(){
+  const c=document.getElementById('fw-phases');
+  c.innerHTML=Object.entries(PH).map(([k,ph],i)=>{
+    const cnt=T.filter(t=>t.ph.includes(k)).length;
+    return `<div class="fw-phase">
+      <span class="fwico">${FWICO[i]||'◆'}</span>
+      <div class="fwname">${ph.label}</div>
+      <div class="fwcnt">${cnt} tools</div>
+    </div>`;
+  }).join('');
+}
+// Initialize on DOM ready
+try {
+  renderTools();
+  renderSymptoms();
+  renderFw();
+} catch(err) {
+  console.error('Init error:', err);
+}
+
+// Expose to global scope for onclick handlers
+window.fAuth = fAuth;
+window.fPhase = fPhase;
+window.focusTool = focusTool;
+window.showP = showP;
+window.tgl = tgl;
+window.tgls = tgls;
+window.sTools = sTools;
+
+});</script>
+</body>
+</html>
